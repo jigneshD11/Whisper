@@ -220,7 +220,7 @@ open class ShoutView: UIView {
             var topPadding: CGFloat = 15
             
             if #available(iOS 11.0, *) {
-                topPadding = topPadding + self.mainWindow()!.safeAreaInsets.top
+                topPadding = topPadding + (self.mainWindow()?.safeAreaInsets.top ?? 0)
             }
             
             
