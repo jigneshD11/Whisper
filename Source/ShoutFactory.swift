@@ -181,6 +181,11 @@ open class ShoutView: UIView {
     public func setupFrames() {
         internalHeight = (UIApplication.shared.isStatusBarHidden ? 55 : 65)
         
+        if #available(iOS 11.0, *) {
+            let safeAreaTop = (self.mainWindow()?.safeAreaInsets.top ?? 0)
+            internalHeight = (safeAreaTop > CGFloat(0)) ? internalHeight + safeAreaTop : internalHeight
+        }
+        
         let totalWidth = UIScreen.main.bounds.width
         let offset: CGFloat = UIApplication.shared.isStatusBarHidden ? 2.5 : 5
         let textOffsetX: CGFloat = imageView.image != nil ? Dimensions.textOffset : 18
@@ -218,15 +223,16 @@ open class ShoutView: UIView {
         didSet {
             let horizontalPadding: CGFloat = 10
             var topPadding: CGFloat = 15
+            var bgViewHeight = frame.size.height - Dimensions.touchOffset
             
             if #available(iOS 11.0, *) {
                 topPadding = topPadding + (self.mainWindow()?.safeAreaInsets.top ?? 0)
+                bgViewHeight = bgViewHeight - topPadding
             }
-            
             
             backgroundView.frame = CGRect(x: horizontalPadding, y: topPadding,
                                           width: frame.size.width - 2 * horizontalPadding,
-                                          height: frame.size.height - Dimensions.touchOffset)
+                                          height: bgViewHeight)
             
             backgroundView.layer.cornerRadius = horizontalPadding
         }
