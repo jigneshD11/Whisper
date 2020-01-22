@@ -245,7 +245,7 @@ open class ShoutView: UIView {
     
     open func silent() {
         UIView.animate(withDuration: 0.35, animations: {
-            self.frame.size.height = 0
+            self.frame.origin.y = -self.frame.maxY
         }, completion: { finished in
             self.completion?()
             self.displayTimer.invalidate()
