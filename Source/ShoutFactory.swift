@@ -180,9 +180,11 @@ open class ShoutView: UIView {
     
     public func setupFrames() {
         internalHeight = (UIApplication.shared.isStatusBarHidden ? 55 : 65)
+        var topPadding: CGFloat = 15
         
         if #available(iOS 11.0, *) {
             let safeAreaTop = (self.mainWindow()?.safeAreaInsets.top ?? 0)
+            topPadding = topPadding + safeAreaTop
             internalHeight = (safeAreaTop > CGFloat(0)) ? internalHeight + safeAreaTop : internalHeight
         }
         
@@ -196,9 +198,10 @@ open class ShoutView: UIView {
             $0.sizeToFit()
         }
         
-        internalHeight += subtitleLabel.frame.height
+        internalHeight += subtitleLabel.text?.count == 0 ? 0 : subtitleLabel.frame.height
+        internalHeight += titleLabel.text?.count == 0 ? 0 : titleLabel.frame.height
         
-        imageView.frame = CGRect(x: Dimensions.imageOffset, y: (internalHeight - imageSize) / 2 + offset,
+        imageView.frame = CGRect(x: Dimensions.imageOffset, y: ((internalHeight - topPadding) - imageSize) / 2,
                                  width: imageSize, height: imageSize)
         
         let textOffsetY = imageView.image != nil ? imageView.frame.origin.x + 3 : textOffsetX + 5
@@ -206,7 +209,7 @@ open class ShoutView: UIView {
         titleLabel.frame.origin = CGPoint(x: textOffsetX, y: textOffsetY)
         subtitleLabel.frame.origin = CGPoint(x: textOffsetX, y: titleLabel.frame.maxY + 2.5)
         
-        if subtitleLabel.text?.isEmpty ?? true {
+        if subtitleLabel.text?.isEmpty ?? true && imageView.image != nil {
             titleLabel.center.y = imageView.center.y - 2.5
         }
         
