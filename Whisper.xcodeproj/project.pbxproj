@@ -135,7 +135,7 @@
 				TargetAttributes = {
 					290530F81C20511C00FB382C = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -144,6 +144,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 290530EF1C20511C00FB382C;
@@ -311,7 +312,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.hyper.Whisper;
 				PRODUCT_NAME = Whisper;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -330,7 +331,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.hyper.Whisper;
 				PRODUCT_NAME = Whisper;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
